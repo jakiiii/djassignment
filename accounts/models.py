@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    if_operator = models.BooleanField(
+    is_operator = models.BooleanField(
         default=False
     )
     REQUIRED_FIELDS = ['first_name', 'last_name']

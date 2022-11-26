@@ -1,6 +1,7 @@
 import uuid
-from django.conf import settings
 from django.db import models
+from django.conf import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from base.models import BaseModel
 from product.utils import product_photo_directory_path
@@ -38,6 +39,11 @@ class Product(BaseModel):
         default=0.00
     )
     description = models.TextField()
+    review = models.PositiveSmallIntegerField(
+        null=True,
+        blank=True,
+        validators=[MaxValueValidator(5), MinValueValidator(1)]
+    )
     is_feature = models.BooleanField(
         default=False
     )
