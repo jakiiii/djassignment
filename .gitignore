@@ -381,8 +381,6 @@ dmypy.json
 ###################################################
 
 static_root
-media
-media_root
 env-sample.txt
 ###################################################
 ######## gitignore for this project ends ##########
