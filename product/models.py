@@ -69,6 +69,6 @@ class ProductImage(models.Model):
         on_delete=models.CASCADE,
         related_name='product_image'
     )
-    Image = models.ImageField(
+    image = models.ImageField(
         upload_to=product_photo_directory_path
     )

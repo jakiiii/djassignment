@@ -12,7 +12,7 @@ from product.serializers import ProductCreateSerializer
 
 
 class AdminCategoryViewSet(ModelViewSet):
-    permission_classes = [IsAuthenticated, IsAdmin]
+    permission_classes = [IsAuthenticated]
     queryset = Category.objects.all()
     lookup_field = 'uid'
 

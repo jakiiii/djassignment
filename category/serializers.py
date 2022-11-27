@@ -8,6 +8,7 @@ class AdminCategoriesListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = (
+            'uid',
             'name',
             'status'
         )

@@ -6,4 +6,6 @@ from rest_framework import permissions
 
 urlpatterns = [
     path('auth/', include('accounts.urls')),
+    path('', include('category.urls', namespace='categories')),
+    path('', include('product.urls', namespace='product')),
 ]
