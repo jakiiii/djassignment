@@ -10,13 +10,14 @@ class ProductImageSerializer(serializers.ModelSerializer):
         fields = ('id', 'product', 'image')
 
 
-class ProductListSerializer(serializers.ModelSerializer):
+class ProductListSerializer(serializers.HyperlinkedModelSerializer):
     posted_by = serializers.StringRelatedField(read_only=True)
     category = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Product
         fields = (
+            'url',
             'uid',
             'posted_by',
             'title',
@@ -26,12 +27,7 @@ class ProductListSerializer(serializers.ModelSerializer):
             'description',
             'review',
             'is_feature',
-            'status',
         )
-
-
-class ProductCreateSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Product
-        fields = '__all__'
+        extra_kwargs = {
+            'url': {'view_name': 'product:product_detail', 'lookup_field': 'uid'},
+        }

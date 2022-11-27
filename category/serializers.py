@@ -1,21 +1,26 @@
 from rest_framework import serializers
 
 from category.models import Category
+from product.serializers import ProductListSerializer
 
 
-class AdminCategoriesListSerializer(serializers.ModelSerializer):
+class CategoriesListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
         fields = (
             'uid',
             'name',
-            'status'
         )
 
 
-class AdminCategoriesCreateSerializer(serializers.ModelSerializer):
+class CategoryRelatedProduct(serializers.ModelSerializer):
+    product_category = ProductListSerializer(many=True)
 
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = (
+            'uid',
+            'name',
+            'product_category',
+        )

@@ -4,15 +4,17 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 
 from product.models import Product
-from product.serializers import ProductListSerializer, ProductCreateSerializer
+from product.serializers import ProductListSerializer
 
 
-class ProductViewSet(ModelViewSet):
+class ProductListAV(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
     queryset = Product.objects.all()
-    lookup_field = 'uid'
+    serializer_class = ProductListSerializer
 
-    def get_serializer_class(self):
-        if self.action in ['create', 'partial_update']:
-            return ProductCreateSerializer
-        return ProductListSerializer
+
+class ProductRetrieveAV(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Product.objects.all()
+    serializer_class = ProductListSerializer
+    lookup_field = 'uid'
